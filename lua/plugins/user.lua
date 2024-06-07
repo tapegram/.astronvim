@@ -1,5 +1,3 @@
-if true then return {} end -- WARN: REMOVE THIS LINE TO ACTIVATE THIS FILE
-
 -- You can also add or configure plugins by creating files in this `plugins/` folder
 -- Here are some examples:
 
@@ -7,79 +5,71 @@ if true then return {} end -- WARN: REMOVE THIS LINE TO ACTIVATE THIS FILE
 return {
 
   -- == Examples of Adding Plugins ==
-
-  "andweeb/presence.nvim",
-  {
-    "ray-x/lsp_signature.nvim",
-    event = "BufRead",
-    config = function() require("lsp_signature").setup() end,
-  },
-
-  -- == Examples of Overriding Plugins ==
-
-  -- customize alpha options
-  {
-    "goolord/alpha-nvim",
-    opts = function(_, opts)
-      -- customize the dashboard header
-      opts.section.header.val = {
-        " █████  ███████ ████████ ██████   ██████",
-        "██   ██ ██         ██    ██   ██ ██    ██",
-        "███████ ███████    ██    ██████  ██    ██",
-        "██   ██      ██    ██    ██   ██ ██    ██",
-        "██   ██ ███████    ██    ██   ██  ██████",
-        " ",
-        "    ███    ██ ██    ██ ██ ███    ███",
-        "    ████   ██ ██    ██ ██ ████  ████",
-        "    ██ ██  ██ ██    ██ ██ ██ ████ ██",
-        "    ██  ██ ██  ██  ██  ██ ██  ██  ██",
-        "    ██   ████   ████   ██ ██      ██",
-      }
-      return opts
-    end,
-  },
-
-  -- You can disable default plugins as follows:
-  { "max397574/better-escape.nvim", enabled = false },
-
-  -- You can also easily customize additional setup of plugins that is outside of the plugin's setup call
   {
     "L3MON4D3/LuaSnip",
-    config = function(plugin, opts)
-      require "astronvim.plugins.configs.luasnip"(plugin, opts) -- include the default astronvim config that calls the setup call
-      -- add more custom luasnip configuration such as filetype extend or custom snippets
-      local luasnip = require "luasnip"
-      luasnip.filetype_extend("javascript", { "javascriptreact" })
-    end,
+    build = "make install_jsregexp",
+    config = function() require("luasnip.loaders.from_vscode").lazy_load { paths = { "~/projects/snippets" } } end,
   },
-
   {
-    "windwp/nvim-autopairs",
-    config = function(plugin, opts)
-      require "astronvim.plugins.configs.nvim-autopairs"(plugin, opts) -- include the default astronvim config that calls the setup call
-      -- add more custom autopairs configuration such as custom rules
-      local npairs = require "nvim-autopairs"
-      local Rule = require "nvim-autopairs.rule"
-      local cond = require "nvim-autopairs.conds"
-      npairs.add_rules(
-        {
-          Rule("$", "$", { "tex", "latex" })
-            -- don't add a pair if the next character is %
-            :with_pair(cond.not_after_regex "%%")
-            -- don't add a pair if  the previous character is xxx
-            :with_pair(
-              cond.not_before_regex("xxx", 3)
-            )
-            -- don't move right when repeat character
-            :with_move(cond.none())
-            -- don't delete if the next character is xx
-            :with_del(cond.not_after_regex "xx")
-            -- disable adding a newline when you press <cr>
-            :with_cr(cond.none()),
+    "unisonweb/unison",
+    branch = "trunk",
+    config = function(plugin)
+      vim.opt.rtp:append(plugin.dir .. "/editor-support/vim")
+      require("lazy.core.loader").packadd(plugin.dir .. "/editor-support/vim")
+
+      -- This function is for configuring a buffer when an LSP is attached
+      local on_attach = function(client, bufnr)
+        -- Always show the signcolumn, otherwise it would shift the text each time
+        -- diagnostics appear/become resolved
+        vim.o.signcolumn = "yes"
+
+        -- Update the cursor hover location every 1/4 of a second
+        vim.o.updatetime = 250
+
+        -- Disable appending of the error text at the offending line
+        vim.diagnostic.config { virtual_text = false }
+
+        -- Enable a floating window containing the error text when hovering over an error
+        vim.api.nvim_create_autocmd("CursorHold", {
+          buffer = bufnr,
+          callback = function()
+            local opts = {
+              focusable = false,
+              close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
+              border = "rounded",
+              source = "always",
+              prefix = " ",
+              scope = "cursor",
+            }
+            vim.diagnostic.open_float(nil, opts)
+          end,
+        })
+
+        -- This setting is to display hover information about the symbol under the cursor
+        vim.keymap.set("n", "K", vim.lsp.buf.hover)
+      end
+
+      -- Setup the Unison LSP
+      require("lspconfig")["unison"].setup {
+        on_attach = on_attach,
+      }
+
+      -- This is NVim Autocompletion support
+      local cmp = require "cmp"
+
+      -- This function sets up autocompletion
+      cmp.setup {
+
+        -- This mapping affects the autocompletion choices menu
+        mapping = cmp.mapping.preset.insert(),
+
+        -- This table names the sources for autocompletion
+        sources = {
+          { name = "nvim_lsp" },
+          { name = "luasnip" },
         },
-        -- disable for .vim files, but it work for another filetypes
-        Rule("a", "a", "-vim")
-      )
+      }
     end,
+    init = function(plugin) require("lazy.core.loader").ftdetect(plugin.dir .. "/editor-support/vim") end,
   },
 }

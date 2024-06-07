@@ -5,23 +5,18 @@
 ---@type LazySpec
 return {
   "AstroNvim/astrocommunity",
-  { import = "astrocommunity.pack.lua" },
-  { import = "astrocommunity.bars-and-lines.smartcolumn-nvim" },
-  { import = "astrocommunity.colorscheme.catppuccin" },
-  { import = "astrocommunity.colorscheme.everforest" },
-  { import = "astrocommunity.colorscheme.kanagawa-nvim" },
-  { import = "astrocommunity.colorscheme.melange-nvim" },
-  { import = "astrocommunity.completion.copilot-lua-cmp" },
   {
     import = "astrocommunity.editing-support.chatgpt-nvim",
     config = function()
-      requre("chatgpt").setup {
+      require("chatgpt").setup {
         api_key_cmd = "echo $OPENAI_API_KEY",
         actions_paths = { "~/chatgpt-actions/actions.json" },
       }
     end,
   },
-  -- { import = "astrocommunity.workflow.hardtime-nvim" },
+  { import = "astrocommunity.bars-and-lines.smartcolumn-nvim" },
+  { import = "astrocommunity.colorscheme.everforest" },
+  { import = "astrocommunity.completion.copilot-lua-cmp" },
   { import = "astrocommunity.editing-support.mini-splitjoin" },
   { import = "astrocommunity.editing-support.text-case-nvim" },
   { import = "astrocommunity.file-explorer.oil-nvim" },
@@ -32,11 +27,13 @@ return {
   { import = "astrocommunity.motion.leap-nvim" },
   { import = "astrocommunity.motion.nvim-surround" },
   { import = "astrocommunity.note-taking.neorg" },
+  { import = "astrocommunity.pack.lua" },
   { import = "astrocommunity.pack.rust" },
   { import = "astrocommunity.pack.typescript" },
   { import = "astrocommunity.project.project-nvim" },
   { import = "astrocommunity.scrolling.mini-animate" },
   { import = "astrocommunity.search.sad-nvim" },
+  { import = "astrocommunity.utility.noice-nvim" },
   {
     "m4xshen/smartcolumn.nvim",
     opts = {
