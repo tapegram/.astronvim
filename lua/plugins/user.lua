@@ -11,6 +11,63 @@ return {
     config = function() require("luasnip.loaders.from_vscode").lazy_load { paths = { "~/projects/snippets" } } end,
   },
   {
+    "echasnovski/mini.animate",
+    opts = {
+      open = {
+        enable = false,
+      },
+      close = {
+        enable = false,
+      },
+    },
+  },
+  {
+    "ggandor/leap.nvim",
+    opts = {
+      safe_labels = {},
+      -- highlight_unlabeled_phase_one_targets = true,
+    },
+    -- config = function()
+    --   vim.api.nvim_set_hl(0, "LeapBackdrop", { link = "Comment" })
+    --   -- vim.api.nvim_set_hl(0, "LeapMatch", {
+    --   --   fg = "black",
+    --   --   bold = true,
+    --   --   nocombine = true,
+    --   -- })
+    -- end,
+  },
+  {
+    "scottmckendry/cyberdream.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = {
+      transparent = true,
+      italic_comments = true,
+      hide_fillchars = true,
+      borderless_telescope = true,
+      -- cache = true,
+      terminal_colors = true,
+      theme = {
+        variant = "default",
+        overrides = function(colors)
+          return {
+            LeapMatch = { fg = colors.fg, bg = colors.magenta },
+            -- LeapBackdrop = { fg = colors.bgHighlight },
+          }
+        end,
+      },
+      extensions = {
+        telescope = true,
+        notify = true,
+        leap = false,
+        mini = true,
+        noice = true,
+        treesitter = true,
+        treesittercontext = true,
+      },
+    },
+  },
+  {
     "unisonweb/unison",
     branch = "trunk",
     config = function(plugin)

@@ -50,14 +50,16 @@ return {
     mappings = {
       -- first key is the mode
       n = {
-        ["<Leader><tab>"] = { ":e#<cr>", desc = "Previous File"},
-        ["<Leader>r"] = { ":e<cr>", desc = "Reload File"},
+        ["<Leader><tab>"] = { ":e#<cr>", desc = "Previous File" },
+        ["<Leader>r"] = { ":e<cr>", desc = "Reload File" },
         -- second key is the lefthand side of the map
         -- mappings seen under group name "Buffer"
         ["<Leader>bn"] = { "<cmd>tabnew<cr>", desc = "New tab" },
         ["<Leader>bD"] = {
           function()
-            require("astronvim.utils.status").heirline.buffer_picker(function(bufnr) require("astronvim.utils.buffer").close(bufnr) end)
+            require("astronvim.utils.status").heirline.buffer_picker(
+              function(bufnr) require("astronvim.utils.buffer").close(bufnr) end
+            )
           end,
           desc = "Pick to close",
         },
@@ -67,7 +69,7 @@ return {
         -- quick save
         -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
         --
-        -- Rebind Comment to ; from / 
+        -- Rebind Comment to ; from /
         ["<Leader>/"] = false,
         ["<Leader>;"] = {
           function() require("Comment.api").toggle.linewise.count(vim.v.count > 0 and vim.v.count or 1) end,
@@ -77,15 +79,17 @@ return {
         -- Rebind Find Theme to Ts
         ["<Leader>ft"] = false,
         ["<Leader>T"] = { name = "Toggle" },
-        ["<Leader>Ts"] =
-        { function() require("telescope.builtin").colorscheme { enable_preview = true } end, desc = "Find themes" },
+        ["<Leader>Ts"] = {
+          function() require("telescope.builtin").colorscheme { enable_preview = true } end,
+          desc = "Find themes",
+        },
 
         -- Shortcut for LSP code actions
         ["<Leader>."] = {
           function() vim.lsp.buf.code_action() end,
           desc = "LSP code action",
         },
-        
+
         -- Use inc-rename isntead of the default rename behavior
         ["<Leader>lr"] = false,
         ["<Leader>lr"] = {
@@ -111,48 +115,47 @@ return {
 
         -- Diagnostic for buffer
         ["<Leader>lE"] = {
-          function() require("telescope.builtin").diagnostics({ bufnr = 0 }) end,
-          desc = "Show diagnostics in buffer"
+          function() require("telescope.builtin").diagnostics { bufnr = 0 } end,
+          desc = "Show diagnostics in buffer",
         },
-         
+
         -- Diagnostic for buffer
         ["<Leader>leb"] = {
-          function() require("telescope.builtin").diagnostics({ bufnr = 0 }) end,
-          desc = "Show diagnostics in buffer"
+          function() require("telescope.builtin").diagnostics { bufnr = 0 } end,
+          desc = "Show diagnostics in buffer",
         },
-         
+
         -- Diagnostic for buffer in project
         ["<Leader>leD"] = {
           function() require("telescope.builtin").diagnostics() end,
-          desc = "Show diagnostics in project"
+          desc = "Show diagnostics in project",
         },
-        
+
         -- Goto next error in bugger
         ["<Leader>len"] = {
-          function() vim.diagnostic.goto_next({ bufnr = 0}) end,
-          desc = "Next diagnostic in buffer"
+          function() vim.diagnostic.goto_next { bufnr = 0 } end,
+          desc = "Next diagnostic in buffer",
         },
 
         -- Goto prev error
         ["<Leader>lep"] = {
-          function() vim.diagnostic.goto_prev({bufnr = 0}) end,
-          desc = "Previous diagnostic in buffer"
+          function() vim.diagnostic.goto_prev { bufnr = 0 } end,
+          desc = "Previous diagnostic in buffer",
         },
-        
+
         ["<Leader>lF"] = {
-          function() require("telescope.builtin").quickfix({ bufnr = 0 }) end,
-          desc = "Quick fixes"
+          function() require("telescope.builtin").quickfix { bufnr = 0 } end,
+          desc = "Quick fixes",
         },
-        
 
         -- Telescope for .git project
         -- https://github.com/nvim-telescope/telescope.nvim/issues/592#issuecomment-789002966kk
         -- Gave spacemacs keybinding for muscle memory reasons.
-        ["<Leader>pf"] = { 
+        ["<Leader>pf"] = {
           function(opts)
             opts = opts or {}
             opts.cwd = vim.fn.systemlist("git rev-parse --show-toplevel")[1]
-            require'telescope.builtin'.find_files(opts)
+            require("telescope.builtin").find_files(opts)
           end,
           desc = "Find file in project",
         },
@@ -163,24 +166,26 @@ return {
         -- https://github.com/nvim-telescope/telescope.nvim/issues/762#issuecomment-933036711
         ["<Leader>s"] = { name = "search" },
         ["<Leader>ss"] = {
-          function() require('telescope.builtin').current_buffer_fuzzy_find({fuzzy=true, case_mode=ignore_case}) end,
-          desc = "Search in buffer"
+          function() require("telescope.builtin").current_buffer_fuzzy_find { fuzzy = true, case_mode = ignore_case } end,
+          desc = "Search in buffer",
         },
         -- Live search of project
         ["<Leader>sp"] = {
-          function() require('telescope.builtin').live_grep({fuzzy=true, case_mode=ignore_case}) end,
-          desc = "Search in project"
+          function() require("telescope.builtin").live_grep { fuzzy = true, case_mode = ignore_case } end,
+          desc = "Search in project",
         },
         -- Telescope
         -- Look up buffers!
         ["<Leader>bb"] = false,
         ["<Leader>bb"] = {
-          function() require('telescope.builtin').oldfiles({
-            fuzzy=true,
-            case_more=ignore_case,
-            cwd_only=true,
-          }) end,
-          desc = "Recent files"
+          function()
+            require("telescope.builtin").oldfiles {
+              fuzzy = true,
+              case_more = ignore_case,
+              cwd_only = true,
+            }
+          end,
+          desc = "Recent files",
         },
         -- GPT
         ["<Leader><C-g>c"] = {
@@ -194,7 +199,7 @@ return {
         ["<Leader><C-g>p"] = {
           function() require("chatgpt").selectAwesomePrompt() end,
           desc = "Open chat with awesome prompt",
-        }
+        },
         -- ["<Leader><C-g>C"] = {
         --   function() require("chatgpt").complete_code() end,
         --   desc = "Complete code",
@@ -205,10 +210,11 @@ return {
         -- ["<esc>"] = false,
       },
       v = {
-        -- Rebind Comment to ; from / 
+        -- Rebind Comment to ; from /
         ["<Leader>/"] = false,
         ["<Leader>;"] = {
-          "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<cr>", desc = "Toggle comment line"
+          "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<cr>",
+          desc = "Toggle comment line",
         },
         -- Shortcut for LSP code actions
         ["<Leader>."] = {
@@ -224,8 +230,8 @@ return {
         ["<Leader><C-g>g"] = {
           "<cmd>ChatGPTRun generate_mappings<CR>",
           desc = "Generate mappings",
-        }
+        },
       },
     },
-  }
+  },
 }
