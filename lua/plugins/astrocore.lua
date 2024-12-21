@@ -271,6 +271,14 @@ return {
               Then recompose these units of code so the original behavior is unchanged.
 
               All code should be written into in the same file, but grouped so they can easily be split into separate files manually
+              
+              Additionally, you should prefer writing code that:
+
+              - Is functional and immutable, where possible and appropriate
+              - Separates pure and impure behaviors into separate functions, which are then composed
+              - Explicitly handles failures
+              - Relies on principles such as SOLID, Ports and Adapters, Domain Driven Design, and 'Parse, Don't Validate'
+              - Code should be kept at the same level of abstraction with a single function (as is recommended in Clean Code principles)
             ]],
             }
           end,
