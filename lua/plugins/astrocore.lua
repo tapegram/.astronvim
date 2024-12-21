@@ -17,6 +17,7 @@ return {
       highlighturl = true, -- highlight URLs at start
       notifications = true, -- enable notifications at start
     },
+
     -- Diagnostics configuration (for vim.diagnostics.config({...})) when diagnostics are on
     diagnostics = {
       virtual_text = true,
@@ -32,6 +33,7 @@ return {
         wrap = true, -- sets vim.opt.wrap
         showtabline = 0,
         background = "dark", -- sets the default background (light or dark). Can be toggled with <leader>ub
+        scrolloff = 50,
       },
       g = { -- vim.g.<key>
         -- configure global vim variables (vim.g)
@@ -230,6 +232,49 @@ return {
         ["<Leader><C-g>g"] = {
           "<cmd>ChatGPTRun generate_mappings<CR>",
           desc = "Generate mappings",
+        },
+        ["<Leader>a"] = { name = "Avante" },
+        ["<Leader>ac"] = {
+          function()
+            require("avante.api").ask {
+              question = [[
+              Given the selected code, which is either an interface, an abstraction, or some number of unimplemented functions and types 
+
+              Implement a concrete version of the interface or abstraction, or implement the stubbed code as appropriate.
+
+              Do so in an idiomatic way based on the language, and ensure that the code is correct and complete.
+
+              The code should be well-structured, easy to read, and easy to test.
+
+              The code should be written in a way that reflects the code style of the existing codebase.
+
+              Additionally, you should prefer writing code that:
+
+              - Is functional and immutable, where possible and appropriate
+              - Separates pure and impure behaviors into separate functions, which are then composed
+              - Explicitly handles failures
+              - Relies on principles such as SOLID, Ports and Adapters, Domain Driven Design, and 'Parse, Don't Validate'
+              - Code should be kept at the same level of abstraction with a single function (as is recommended in Clean Code principles)
+            ]],
+            }
+          end,
+          desc = "Implement an interface or stub",
+        },
+        ["<Leader>ap"] = {
+          function()
+            require("avante.api").ask {
+              question = [[
+              Refactor the given code into smaller component functions, types, and/or classes, as appropriate.
+
+              In particular, emphasize separating impure functions (those with side effects) from pure functions, which are deterministic. 
+
+              Then recompose these units of code so the original behavior is unchanged.
+
+              All code should be written into in the same file, but grouped so they can easily be split into separate files manually
+            ]],
+            }
+          end,
+          desc = "Purify",
         },
       },
     },
