@@ -9,7 +9,8 @@ return {
   ---@type AstroUIOpts
   opts = {
     -- change colorscheme
-    -- colorscheme = "everforest",
+    -- colorscheme = "kanagawa-paper",
+    colorscheme = "everforest",
     -- colorscheme = "deepwhite",
     -- colorscheme = "cyberdream",
     -- colorscheme = "melange",

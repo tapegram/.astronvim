@@ -14,27 +14,16 @@ return {
       }
     end,
   },
-  { import = "astrocommunity.motion.mini-ai" },
-  -- { import = "astrocommunity.bars-and-lines.smartcolumn-nvim" },
-  -- {
-  --   import = "astrocommunity.colorscheme.cyberdream-nvim",
-  --   config = function()
-  --     require("cyberdream").setup {
-  --       transparent = true,
-  --       italic_comments = true,
-  --       hide_fillchars = true,
-  --       borderless_telescope = true,
-  --       cache = true,
-  --       theme = {
-  --         variant = "auto",
-  --       },
-  --     }
-  --   end,
-  -- },
-  { import = "astrocommunity.scrolling.cinnamon-nvim" },
+  { import = "astrocommunity.color.tint-nvim" },
+  { import = "astrocommunity.motion.before-nvim" },
+  { import = "astrocommunity.motion.vim-matchup" },
+  { import = "astrocommunity.terminal-integration.toggleterm-manager-nvim" },
+  { import = "astrocommunity.split-and-window.colorful-winsep-nvim" },
+  { import = "astrocommunity.split-and-window.windows-nvim" },
   { import = "astrocommunity.colorscheme.catppuccin" },
   { import = "astrocommunity.colorscheme.everforest" },
   { import = "astrocommunity.colorscheme.melange-nvim" },
+  { import = "astrocommunity.colorscheme.kanagawa-paper-nvim" },
   { import = "astrocommunity.completion.copilot-lua-cmp" },
   { import = "astrocommunity.editing-support.copilotchat-nvim" },
   { import = "astrocommunity.editing-support.mini-splitjoin" },
@@ -56,23 +45,9 @@ return {
   { import = "astrocommunity.scrolling.neoscroll-nvim" },
   { import = "astrocommunity.search.sad-nvim" },
   { import = "astrocommunity.utility.noice-nvim" },
-  -- {
-  --   import = "astrocommunity.completion.avante-nvim",
-  --   opts = {
-  --     window = {
-  --       width = 50,
-  --     },
-  --   },
-  -- },
   { import = "astrocommunity.recipes.vscode" },
+  { import = "astrocommunity.motion.marks-nvim" },
   -- { import = "astrocommunity.workflow.hardtime-nvim" },
   -- { import = "astrocommunity.diagnostics.tiny-inline-diagnostic-nvim" },
   -- { import = "astrocommunity.pack.python" },
-  -- {
-  --   "m4xshen/smartcolumn.nvim",
-  --   opts = {
-  --     colorcolumn = 120,
-  --     disabled_filetypes = { "help" },
-  --   },
-  -- },
 }

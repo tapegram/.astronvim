@@ -25,12 +25,12 @@ return {
   --     },
   --   },
   -- },
-  {
-    "Verf/deepwhite.nvim",
-    lazy = false,
-    priority = 1000,
-    config = function() vim.cmd [[colorscheme deepwhite]] end,
-  },
+  -- {
+  --   "Verf/deepwhite.nvim",
+  --   lazy = false,
+  --   priority = 1000,
+  --   config = function() vim.cmd [[colorscheme deepwhite]] end,
+  -- },
   {
     "yetone/avante.nvim",
     build = vim.fn.has "win32" == 1 and "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false"
@@ -126,37 +126,6 @@ return {
     --   --   nocombine = true,
     --   -- })
     -- end,
-  },
-  {
-    "scottmckendry/cyberdream.nvim",
-    lazy = false,
-    priority = 1000,
-    opts = {
-      transparent = true,
-      italic_comments = true,
-      hide_fillchars = true,
-      borderless_telescope = true,
-      -- cache = true,
-      terminal_colors = true,
-      theme = {
-        variant = "default",
-        overrides = function(colors)
-          return {
-            LeapMatch = { fg = colors.fg, bg = colors.magenta },
-            -- LeapBackdrop = { fg = colors.bgHighlight },
-          }
-        end,
-      },
-      extensions = {
-        telescope = true,
-        notify = true,
-        leap = false,
-        mini = true,
-        noice = true,
-        treesitter = true,
-        treesittercontext = true,
-      },
-    },
   },
   {
     "unisonweb/unison",

@@ -210,6 +210,26 @@ return {
       t = {
         -- setting a mapping to false will disable it
         -- ["<esc>"] = false,
+        ["<C-w>+"] = false,
+        ["<C-w>+"] = {
+          "<cmd>resize +10<cr>",
+          desc = "Increase height",
+        },
+        ["<C-w>-"] = false,
+        ["<C-w>-"] = {
+          "<cmd>resize -10<cr>",
+          desc = "Decrease height",
+        },
+        ["<C-w><"] = false,
+        ["<C-w><"] = {
+          "<cmd>vertical resize -10<cr>",
+          desc = "Decrease width",
+        },
+        ["<C-w>>"] = false,
+        ["<C-w>>"] = {
+          "<cmd>vertical resize +10<cr>",
+          desc = "Increase width",
+        },
       },
       v = {
         -- Rebind Comment to ; from /
