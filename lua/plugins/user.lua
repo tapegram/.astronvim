@@ -189,4 +189,12 @@ return {
     end,
     init = function(plugin) require("lazy.core.loader").ftdetect(plugin.dir .. "/editor-support/vim") end,
   },
+  {
+    dir = "~/projects/martian/nvim",
+    config = function()
+      require("martian").setup {
+        url = "http://localhost:8642",
+      }
+    end,
+  },
 }

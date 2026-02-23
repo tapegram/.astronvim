@@ -11,6 +11,7 @@ return {
     -- change colorscheme
     -- colorscheme = "kanagawa-paper",
     colorscheme = "everforest",
+    background = "hard",
     -- colorscheme = "deepwhite",
     -- colorscheme = "cyberdream",
     -- colorscheme = "melange",
