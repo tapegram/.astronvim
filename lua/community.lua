@@ -5,15 +5,15 @@
 ---@type LazySpec
 return {
   "AstroNvim/astrocommunity",
-  {
-    import = "astrocommunity.editing-support.chatgpt-nvim",
-    config = function()
-      require("chatgpt").setup {
-        api_key_cmd = "echo $OPENAI_API_KEY",
-        actions_paths = { "~/chatgpt-actions/actions.json" },
-      }
-    end,
-  },
+  -- {
+  --   import = "astrocommunity.editing-support.chatgpt-nvim",
+  --   config = function()
+  --     require("chatgpt").setup {
+  --       api_key_cmd = "echo $OPENAI_API_KEY",
+  --       actions_paths = { "~/chatgpt-actions/actions.json" },
+  --     }
+  --   end,
+  -- },
   { import = "astrocommunity.color.tint-nvim" },
   { import = "astrocommunity.motion.before-nvim" },
   { import = "astrocommunity.motion.vim-matchup" },
@@ -25,8 +25,8 @@ return {
   { import = "astrocommunity.colorscheme.melange-nvim" },
   { import = "astrocommunity.colorscheme.kanagawa-paper-nvim" },
   { import = "astrocommunity.completion.copilot-lua-cmp" },
-  { import = "astrocommunity.completion.codex-nvim" },
-  { import = "astrocommunity.editing-support.copilotchat-nvim" },
+  -- { import = "astrocommunity.completion.codex-nvim" },
+  -- { import = "astrocommunity.editing-support.copilotchat-nvim" },
   { import = "astrocommunity.editing-support.mini-splitjoin" },
   { import = "astrocommunity.editing-support.text-case-nvim" },
   { import = "astrocommunity.file-explorer.oil-nvim" },
@@ -38,7 +38,7 @@ return {
   { import = "astrocommunity.motion.nvim-surround" },
   { import = "astrocommunity.pack.go" },
   { import = "astrocommunity.pack.lua" },
-  { import = "astrocommunity.pack.python-ruff" },
+  { import = "astrocommunity.pack.python" },
   { import = "astrocommunity.pack.rust" },
   { import = "astrocommunity.pack.typescript" },
   { import = "astrocommunity.project.project-nvim" },
@@ -49,6 +49,5 @@ return {
   { import = "astrocommunity.motion.marks-nvim" },
   { import = "astrocommunity.pack.biome" },
   -- { import = "astrocommunity.workflow.hardtime-nvim" },
-  -- { import = "astrocommunity.diagnostics.tiny-inline-diagnostic-nvim" },
-  -- { import = "astrocommunity.pack.python" },
+  { import = "astrocommunity.diagnostics.tiny-inline-diagnostic-nvim" },
 }

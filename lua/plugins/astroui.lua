@@ -10,12 +10,12 @@ return {
   opts = {
     -- change colorscheme
     -- colorscheme = "kanagawa-paper",
-    colorscheme = "everforest",
+    -- colorscheme = "everforest",
     background = "hard",
     -- colorscheme = "deepwhite",
     -- colorscheme = "cyberdream",
     -- colorscheme = "melange",
-    -- colorscheme = "catppuccin",
+    colorscheme = "catppuccin",
     -- AstroUI allows you to easily modify highlight groups easily for any and all colorschemes
     highlights = {
       init = { -- this table overrides highlights in all themes

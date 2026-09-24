@@ -112,21 +112,21 @@ return {
       },
     },
   },
-  {
-    "ggandor/leap.nvim",
-    opts = {
-      safe_labels = {},
-      -- highlight_unlabeled_phase_one_targets = true,
-    },
-    -- config = function()
-    --   vim.api.nvim_set_hl(0, "LeapBackdrop", { link = "Comment" })
-    --   -- vim.api.nvim_set_hl(0, "LeapMatch", {
-    --   --   fg = "black",
-    --   --   bold = true,
-    --   --   nocombine = true,
-    --   -- })
-    -- end,
-  },
+  -- {
+  --   url = "https://codeberg.org/andyg/leap.nvim",
+  --   opts = {
+  --     safe_labels = {},
+  --     -- highlight_unlabeled_phase_one_targets = true,
+  --   },
+  --   -- config = function()
+  --   --   vim.api.nvim_set_hl(0, "LeapBackdrop", { link = "Comment" })
+  --   --   -- vim.api.nvim_set_hl(0, "LeapMatch", {
+  --   --   --   fg = "black",
+  --   --   --   bold = true,
+  --   --   --   nocombine = true,
+  --   --   -- })
+  --   -- end,
+  -- },
   {
     "unisonweb/unison",
     branch = "trunk",
