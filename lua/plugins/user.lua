@@ -47,7 +47,6 @@ return {
       "AvanteClear",
     },
     dependencies = {
-      "stevearc/dressing.nvim",
       "nvim-lua/plenary.nvim",
       "MunifTanjim/nui.nvim",
       { "AstroNvim/astrocore", opts = function(_, opts) opts.mappings.n[prefix] = { desc = " Avante" } end },
@@ -166,10 +165,9 @@ return {
         vim.keymap.set("n", "K", vim.lsp.buf.hover)
       end
 
-      -- Setup the Unison LSP
-      require("lspconfig")["unison"].setup {
-        on_attach = on_attach,
-      }
+      -- Setup the Unison LSP (the lspconfig `setup` framework is deprecated in favor of vim.lsp.config)
+      vim.lsp.config("unison", { on_attach = on_attach })
+      vim.lsp.enable "unison"
 
       -- This is NVim Autocompletion support
       local cmp = require "cmp"

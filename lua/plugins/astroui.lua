@@ -15,7 +15,8 @@ return {
     -- colorscheme = "deepwhite",
     -- colorscheme = "cyberdream",
     -- colorscheme = "melange",
-    colorscheme = "catppuccin",
+    -- "catppuccin" is now Neovim's built-in port; "catppuccin-nvim" is the full plugin theme
+    colorscheme = "catppuccin-nvim",
     -- AstroUI allows you to easily modify highlight groups easily for any and all colorschemes
     highlights = {
       init = { -- this table overrides highlights in all themes

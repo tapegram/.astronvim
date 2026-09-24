@@ -5,6 +5,9 @@
 ---@type LazySpec
 return {
   "AstroNvim/astrocommunity",
+  -- AstroNvim v5+ defaults to snacks.picker and blink.cmp; keep telescope and nvim-cmp
+  { import = "astrocommunity.fuzzy-finder.telescope-nvim" },
+  { import = "astrocommunity.completion.nvim-cmp" },
   -- {
   --   import = "astrocommunity.editing-support.chatgpt-nvim",
   --   config = function()

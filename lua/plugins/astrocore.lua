@@ -13,7 +13,7 @@ return {
       large_buf = { size = 1024 * 500, lines = 10000 }, -- set global limits for large files for disabling features like treesitter
       autopairs = true, -- enable autopairs at start
       cmp = true, -- enable completion at start
-      diagnostics_mode = 3, -- diagnostic mode on start (0 = off, 1 = no signs/virtual text, 2 = no virtual text, 3 = on)
+      diagnostics = true, -- enable diagnostics at start
       highlighturl = true, -- highlight URLs at start
       notifications = true, -- enable notifications at start
     },
@@ -59,28 +59,25 @@ return {
         ["<Leader>bn"] = { "<cmd>tabnew<cr>", desc = "New tab" },
         ["<Leader>bD"] = {
           function()
-            require("astronvim.utils.status").heirline.buffer_picker(
-              function(bufnr) require("astronvim.utils.buffer").close(bufnr) end
+            require("astroui.status.heirline").buffer_picker(
+              function(bufnr) require("astrocore.buffer").close(bufnr) end
             )
           end,
           desc = "Pick to close",
         },
         -- tables with the `name` key will be registered with which-key if it's installed
         -- this is useful for naming menus
-        ["<Leader>b"] = { name = "Buffers" },
+        ["<Leader>b"] = { desc = "Buffers" },
         -- quick save
         -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
         --
-        -- Rebind Comment to ; from /
+        -- Rebind Comment to ; from / (Neovim's built-in gc commenting replaced Comment.nvim)
         ["<Leader>/"] = false,
-        ["<Leader>;"] = {
-          function() require("Comment.api").toggle.linewise.count(vim.v.count > 0 and vim.v.count or 1) end,
-          desc = "Comment line",
-        },
+        ["<Leader>;"] = { "gcc", remap = true, desc = "Comment line" },
 
         -- Rebind Find Theme to Ts
         ["<Leader>ft"] = false,
-        ["<Leader>T"] = { name = "Toggle" },
+        ["<Leader>T"] = { desc = "Toggle" },
         ["<Leader>Ts"] = {
           function() require("telescope.builtin").colorscheme { enable_preview = true } end,
           desc = "Find themes",
@@ -135,13 +132,13 @@ return {
 
         -- Goto next error in bugger
         ["<Leader>len"] = {
-          function() vim.diagnostic.goto_next { bufnr = 0 } end,
+          function() vim.diagnostic.jump { count = 1, float = true } end,
           desc = "Next diagnostic in buffer",
         },
 
         -- Goto prev error
         ["<Leader>lep"] = {
-          function() vim.diagnostic.goto_prev { bufnr = 0 } end,
+          function() vim.diagnostic.jump { count = -1, float = true } end,
           desc = "Previous diagnostic in buffer",
         },
 
@@ -166,7 +163,7 @@ return {
         -- Using spacemacs keybding for msucle memory.
         -- https://www.reddit.com/r/neovim/comments/prs0zr/comment/hdlb3dk/?utm_source=share&utm_medium=web3x
         -- https://github.com/nvim-telescope/telescope.nvim/issues/762#issuecomment-933036711
-        ["<Leader>s"] = { name = "search" },
+        ["<Leader>s"] = { desc = "search" },
         ["<Leader>ss"] = {
           function() require("telescope.builtin").current_buffer_fuzzy_find { fuzzy = true, case_mode = ignore_case } end,
           desc = "Search in buffer",
@@ -234,10 +231,7 @@ return {
       v = {
         -- Rebind Comment to ; from /
         ["<Leader>/"] = false,
-        ["<Leader>;"] = {
-          "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<cr>",
-          desc = "Toggle comment line",
-        },
+        ["<Leader>;"] = { "gc", remap = true, desc = "Toggle comment line" },
         -- Shortcut for LSP code actions
         ["<Leader>."] = {
           function() vim.lsp.buf.code_action() end,
@@ -253,7 +247,7 @@ return {
           "<cmd>ChatGPTRun generate_mappings<CR>",
           desc = "Generate mappings",
         },
-        ["<Leader>a"] = { name = "Avante" },
+        ["<Leader>a"] = { desc = "Avante" },
         ["<Leader>ac"] = {
           function()
             require("avante.api").ask {
