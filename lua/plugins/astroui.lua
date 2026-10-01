@@ -19,11 +19,12 @@ return {
     colorscheme = "catppuccin-nvim",
     -- AstroUI allows you to easily modify highlight groups easily for any and all colorschemes
     highlights = {
-      init = { -- this table overrides highlights in all themes
-        -- Normal = { bg = "#000000" },
-      },
-      astrodark = { -- a table of overrides/changes when applying the astrotheme theme
-        -- Normal = { bg = "#000000" },
+      init = { -- Overrides highlights in all themes
+        Normal = { bg = "none" },
+        SignColumn = { bg = "none" },
+        FoldColumn = { bg = "none" },
+        NormalFloat = { bg = "none" },
+        NormalNC = { bg = "none" },
       },
     },
     -- Icons can be configured throughout the interface

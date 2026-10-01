@@ -17,13 +17,19 @@ return {
   --     }
   --   end,
   -- },
+  { import = "astrocommunity.pack.haskell" },
   { import = "astrocommunity.color.tint-nvim" },
   { import = "astrocommunity.motion.before-nvim" },
   { import = "astrocommunity.motion.vim-matchup" },
   { import = "astrocommunity.terminal-integration.toggleterm-manager-nvim" },
   { import = "astrocommunity.split-and-window.colorful-winsep-nvim" },
   { import = "astrocommunity.split-and-window.windows-nvim" },
-  { import = "astrocommunity.colorscheme.catppuccin" },
+  {
+    import = "astrocommunity.colorscheme.catppuccin",
+    opts = {
+      transparent_background = true,
+    },
+  },
   { import = "astrocommunity.colorscheme.everforest" },
   { import = "astrocommunity.colorscheme.melange-nvim" },
   { import = "astrocommunity.colorscheme.kanagawa-paper-nvim" },
