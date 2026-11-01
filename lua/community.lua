@@ -47,7 +47,13 @@ return {
   { import = "astrocommunity.motion.nvim-surround" },
   { import = "astrocommunity.pack.go" },
   { import = "astrocommunity.pack.lua" },
-  { import = "astrocommunity.pack.python" },
+  -- Not the whole pack folder: lazy imports every submodule of it, which also turned on
+  -- pyrefly and ty beside basedpyright (three answers to every gd).
+  { import = "astrocommunity.pack.python.base" },
+  { import = "astrocommunity.pack.python.basedpyright" },
+  { import = "astrocommunity.pack.python.black" },
+  { import = "astrocommunity.pack.python.isort" },
+  { import = "astrocommunity.pack.python.ruff" },
   { import = "astrocommunity.pack.rust" },
   { import = "astrocommunity.pack.typescript" },
   { import = "astrocommunity.project.project-nvim" },
@@ -58,5 +64,5 @@ return {
   { import = "astrocommunity.motion.marks-nvim" },
   { import = "astrocommunity.pack.biome" },
   -- { import = "astrocommunity.workflow.hardtime-nvim" },
-  { import = "astrocommunity.diagnostics.tiny-inline-diagnostic-nvim" },
+  -- { import = "astrocommunity.diagnostics.tiny-inline-diagnostic-nvim" },
 }
