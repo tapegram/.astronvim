@@ -153,7 +153,15 @@ return {
         ["<Leader>pf"] = {
           function(opts)
             opts = opts or {}
-            opts.cwd = vim.fn.systemlist("git rev-parse --show-toplevel")[1]
+            -- Outside a git repo (e.g. a freshly generated alder app) fall back to nvim's cwd
+            -- instead of handing telescope git's error message as a directory.
+            local root = vim.fn.systemlist("git rev-parse --show-toplevel")[1]
+            if vim.v.shell_error == 0 and root and root ~= "" then
+              opts.cwd = root
+            else
+              -- rg ignores .gitignore outside a repo unless told otherwise (alder apps ignore build/)
+              opts.find_command = { "rg", "--files", "--color", "never", "--no-require-git" }
+            end
             require("telescope.builtin").find_files(opts)
           end,
           desc = "Find file in project",
