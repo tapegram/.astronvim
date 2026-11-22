@@ -22,6 +22,8 @@ return {
     diagnostics = {
       virtual_text = true,
       underline = true,
+      -- name who said it in the popup: "scry: …", "conjure: …", "rust-analyzer: …"
+      float = { source = true },
     },
     -- vim options can be configured here
     options = {
