@@ -8,6 +8,14 @@ return {
     dir = "~/projects/sorcerer.nvim",
     name = "sorcerer.nvim",
     lazy = false,
+    -- Neovim started from a launcher lacks the shell PATH: scry and conjure live in
+    -- ~/.cargo/bin, and conjure calls `claude` from ~/.local/bin.
+    init = function()
+      for _, dir in ipairs { "~/.local/bin", "~/.cargo/bin" } do
+        dir = vim.fn.expand(dir)
+        if not vim.env.PATH:find(dir, 1, true) then vim.env.PATH = dir .. ":" .. vim.env.PATH end
+      end
+    end,
     opts = {
       conjure = { enabled = true },
     },
