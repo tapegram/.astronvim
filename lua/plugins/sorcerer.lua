@@ -16,8 +16,11 @@ return {
         if not vim.env.PATH:find(dir, 1, true) then vim.env.PATH = dir .. ":" .. vim.env.PATH end
       end
     end,
+    -- <leader>ma lists the line's code actions: spellbook's fixes first, then conjure's.
+    keys = { { "<leader>ma", function() vim.lsp.buf.code_action() end, desc = "code actions (sorcerer)" } },
     opts = {
       conjure = { enabled = true },
+      spellbook = { enabled = true },
     },
   },
 }

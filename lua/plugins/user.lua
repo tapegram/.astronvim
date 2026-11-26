@@ -182,7 +182,6 @@ return {
         sources = {
           { name = "nvim_lsp" },
           { name = "luasnip" },
-          { name = "durandal" }, -- ⚡ Olifant snippets (durandal.nvim)
         },
       }
     end,
@@ -196,13 +195,4 @@ return {
   --     }
   --   end,
   -- },
-  {
-    dir = "~/projects/durandal.nvim",
-    name = "durandal.nvim",
-    dependencies = { "MunifTanjim/nui.nvim" },
-    opts = {
-      olifant = "olifant", -- the CLI
-      keys = { actions = "<leader>ma", generate = "<leader>mg" }, -- m for magic; false to skip
-    },
-  },
 }
