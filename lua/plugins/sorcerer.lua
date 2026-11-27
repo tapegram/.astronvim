@@ -19,7 +19,7 @@ return {
     opts = {
       conjure = { enabled = true },
       spellbook = { enabled = true },
-      apprentice = { enabled = true },
+      lackey = { enabled = true },
     },
   },
 }
